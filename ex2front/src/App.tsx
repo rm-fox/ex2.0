@@ -10,10 +10,12 @@ import {
 } from "@solana/wallet-adapter-react-ui";
 import { clusterApiUrl } from "@solana/web3.js";
 import "./App.css";
+
  
 // Default styles that can be overridden by your app
 import "@solana/wallet-adapter-react-ui/styles.css";
 import BuyLongButton from "./components/buy-long-button";
+import ChartComponent from "./components/fut-chart";
  
 function App() {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
@@ -36,6 +38,9 @@ function App() {
           <WalletMultiButton />
           <h1>Hello Solana</h1>
           <BuyLongButton />
+          <h1>Stock Chart</h1>
+          <ChartComponent />
+      
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>

@@ -1,5 +1,7 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { createChart } from 'lightweight-charts';
+import BuyLongButton from "./buy-long-button";
 
 const ChartComponent: React.FC = () => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
@@ -20,10 +22,9 @@ const ChartComponent: React.FC = () => {
   useEffect(() => {
     if (!chartContainerRef.current) return;
 
-    // Create the chart inside the referenced container
     const chart = createChart(chartContainerRef.current, {
       width: chartContainerRef.current.clientWidth,
-      height: 300,
+      height: 500,
       layout: {
         textColor: 'black',
         background: { color: 'black' },
@@ -36,47 +37,56 @@ const ChartComponent: React.FC = () => {
       bottomColor: 'rgba(41, 98, 255, 0.28)',
     });
 
-    // Set initial data
     area.setData(areaSeriesData);
-
     chart.timeScale().fitContent();
 
-    // Store the series in state
     setAreaSeries(area);
 
-    // Clean up the chart when the component unmounts
+    const interval = setInterval(() => {
+      setAreaSeriesData((prevData) => {
+        const lastDataPoint = prevData[prevData.length - 1];
+        const nextDate = getNextDate(lastDataPoint.time);
+        const newValue = lastDataPoint.value + (Math.random() * 2 - 1);
+        const newData = { time: nextDate, value: parseFloat(newValue.toFixed(2)) };
+        const updatedData = [...prevData, newData];
+
+        if (areaSeries) {
+          areaSeries.setData(updatedData);
+        }
+
+        return updatedData;
+      });
+    }, 1000);
+
     return () => {
+      clearInterval(interval);
       chart.remove();
     };
   }, [areaSeriesData]);
 
-  // Function to format the date to 'yyyy-mm-dd'
   const formatDate = (date: Date): string => {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // months are zero-indexed
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
 
-  // Function to add a day to the last date
   const getNextDate = (lastDateString: string): string => {
     const lastDate = new Date(lastDateString);
     const nextDate = new Date(lastDate);
-    nextDate.setDate(lastDate.getDate() + 1); // Increment by one day
+    nextDate.setDate(lastDate.getDate() + 1);
     return formatDate(nextDate);
   };
 
-  // Function to append new data to the area series
   const addAreaDataLong = () => {
     setAreaSeriesData((prevData) => {
       const lastDataPoint = prevData[prevData.length - 1];
       const nextDate = getNextDate(lastDataPoint.time);
-
-      const newData = { time: nextDate, value: lastDataPoint.value + Math.random() * 10 - 5 }; // Simulate some random value
+      const newData = { time: nextDate, value: lastDataPoint.value + Math.random() * 5 };
       const updatedData = [...prevData, newData];
 
       if (areaSeries) {
-        areaSeries.setData(updatedData); // Reset the chart with new full data
+        areaSeries.setData(updatedData);
       }
 
       return updatedData;
@@ -87,12 +97,41 @@ const ChartComponent: React.FC = () => {
     setAreaSeriesData((prevData) => {
       const lastDataPoint = prevData[prevData.length - 1];
       const nextDate = getNextDate(lastDataPoint.time);
-
-      const newData = { time: nextDate, value: lastDataPoint.value + Math.random() * 10 - 5 }; // Simulate some random value
+      const newData = { time: nextDate, value: lastDataPoint.value - Math.random() * 5 };
       const updatedData = [...prevData, newData];
 
       if (areaSeries) {
-        areaSeries.setData(updatedData); // Reset the chart with new full data
+        areaSeries.setData(updatedData);
+      }
+
+      return updatedData;
+    });
+  };
+
+  const addAreaDataNoise = () => {
+    setAreaSeriesData((prevData) => {
+      const lastDataPoint = prevData[prevData.length - 1];
+      const nextDate = getNextDate(lastDataPoint.time);
+      const newData = { time: nextDate, value: lastDataPoint.value + Math.random() * 10 - 5 };
+      const updatedData = [...prevData, newData];
+
+      if (areaSeries) {
+        areaSeries.setData(updatedData);
+      }
+
+      return updatedData;
+    });
+  };
+
+  const addAreaDataBuy = () => {
+    setAreaSeriesData((prevData) => {
+      const lastDataPoint = prevData[prevData.length - 1];
+      const nextDate = getNextDate(lastDataPoint.time);
+      const newData = { time: nextDate, value: lastDataPoint.value + Math.random() * 5 };
+      const updatedData = [...prevData, newData];
+
+      if (areaSeries) {
+        areaSeries.setData(updatedData);
       }
 
       return updatedData;
@@ -100,13 +139,13 @@ const ChartComponent: React.FC = () => {
   };
 
   return (
-    <div>
-      <div ref={chartContainerRef} style={{ width: '100%', height: '300px' }} />
-      <button onClick={addAreaDataLong}>Add Area Data</button>
-    
-        {/* <div ref={chartContainerRef} style={{ width: '100%', height: '300px' }} /> */}
-      <button onClick={addAreaDataShort}>Add Area Data</button>
-  </div>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+      <div ref={chartContainerRef} style={{ width: '600px', height: '500px' }} />
+      <button onClick={addAreaDataBuy}>Buy Data</button>
+      <BuyLongButton addAreaDataLong={addAreaDataLong} />
+      <button onClick={addAreaDataShort}>Sell Data</button>
+      <button onClick={addAreaDataNoise}>Add Noise</button>
+    </div>
   );
 };
 

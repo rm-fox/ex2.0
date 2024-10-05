@@ -37,8 +37,7 @@ function App() {
         <WalletModalProvider>
           <WalletMultiButton />
           <h1>Hello Solana</h1>
-          <BuyLongButton />
-          <h1>Stock Chart</h1>
+          <h1>GPUZ4</h1>
           <ChartComponent />
       
         </WalletModalProvider>

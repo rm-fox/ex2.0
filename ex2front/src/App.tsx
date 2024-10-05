@@ -16,6 +16,7 @@ import "./App.css";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import BuyLongButton from "./components/buy-long-button";
 import ChartComponent from "./components/fut-chart";
+import InfoBox from "./components/fut-info";
  
 function App() {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.
@@ -36,12 +37,15 @@ function App() {
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <WalletMultiButton />
-          <h1>Hello Solana</h1>
+          {/* <h1>Hello Solana</h1> */}
           <h1>GPUZ4</h1>
           <ChartComponent />
+
+          
       
         </WalletModalProvider>
       </WalletProvider>
+      <InfoBox />
     </ConnectionProvider>
   );
 }

@@ -36,13 +36,39 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
-          <div style={{
+          {/* <div style={{
           height: '60px',
           width: '1330px',
           textAlign: 'right'
           }}>
           <WalletMultiButton />
-          </div>
+          </div> */}
+          <div style={{
+          height: '60px',
+          width: '1330px',
+          textAlign: 'right', // Align items to the right
+          display: 'flex', // Use flexbox for layout
+          justifyContent: 'flex-end', // Justify items to the end
+          alignItems: 'center', // Center items vertically
+        }}>
+          <WalletMultiButton />
+
+          {/* Documentation Button */}
+          <a href="https://ex2-0.gitbook.io/ex2.0-docs" target="_blank" rel="noopener noreferrer" style={{
+            marginLeft: '10px', // Space between the buttons
+            padding: '10px 15px', // Padding for the button
+            backgroundColor: '#007BFF', // Button background color
+            color: 'white', // Text color
+            borderRadius: '5px', // Rounded corners
+            textDecoration: 'none', // Remove underline from link
+            fontWeight: 'bold', // Bold text
+            display: 'flex', // Use flex to center the text
+            alignItems: 'center', // Center text vertically
+            justifyContent: 'center', // Center text horizontally
+          }}>
+            Documentation
+          </a>
+        </div>
           <div style={{
           height: '10px',}}></div>
           {/* <h1>Hello Solana</h1> */}

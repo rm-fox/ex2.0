@@ -59,10 +59,10 @@
 //   );
 // }
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { program, tokenMintPDA } from "../anchor/setup";
-import { clusterApiUrl, Connection, PublicKey, Transaction } from "@solana/web3.js";
+import { Transaction } from "@solana/web3.js";
 import { getAssociatedTokenAddressSync } from "@solana/spl-token";
 import * as buffer from "buffer";
 window.Buffer = buffer.Buffer;

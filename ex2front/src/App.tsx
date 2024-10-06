@@ -14,9 +14,9 @@ import "./App.css";
  
 // Default styles that can be overridden by your app
 import "@solana/wallet-adapter-react-ui/styles.css";
-import BuyLongButton from "./components/buy-long-button";
+// import BuyLongButton from "./components/buy-long-button";
 import ChartComponent from "./components/fut-chart";
-import InfoBox from "./components/fut-info";
+// import InfoBox from "./components/fut-info";
  
 function App() {
   // The network can be set to 'devnet', 'testnet', or 'mainnet-beta'.

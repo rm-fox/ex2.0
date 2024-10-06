@@ -7,8 +7,8 @@ import obim from './clob.png';
 
 const ChartComponent: React.FC = () => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
-  const [areaSeries, setAreaSeries] = useState<any>(null);
-  const [baselineSeries, setBaselineSeries] = useState<any>(null);
+  const [areaSeries] = useState<any>(null);
+  const [ setBaselineSeries] = useState<any>(null);
   const [areaSeriesData, setAreaSeriesData] = useState([
     { time: '2018-12-22', value: 27.51 },
     { time: '2018-12-23', value: 24.11 },

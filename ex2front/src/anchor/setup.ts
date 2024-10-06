@@ -1,4 +1,4 @@
-import { IdlAccounts, Program } from "@coral-xyz/anchor";
+import { Program } from "@coral-xyz/anchor";
 import { IDL, EverythingFun } from "./idl";
 import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 import * as buffer from "buffer";

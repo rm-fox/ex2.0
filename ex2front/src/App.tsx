@@ -36,18 +36,69 @@ function App() {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
+          <div style={{
+          height: '60px',
+          width: '1330px',
+          textAlign: 'right'
+          }}>
           <WalletMultiButton />
+          </div>
+          <div style={{
+          height: '10px',}}></div>
           {/* <h1>Hello Solana</h1> */}
-          <h1>GPUZ4</h1>
+          <div style={{
+          border: '2px solid #ccc',
+          borderRadius: '10px',
+          padding: '20px',
+          backgroundColor: '#0e1a1e',
+          width: '1290px', // Adjusting to full width
+          display: 'flex', // Using flexbox for layout
+          flexDirection: 'column', // Column layout
+          alignItems: 'flex-start', // Align items to the left
+          height: '50px'
+        }}>
+          <div style={{
+            display: 'grid', // Using grid for structured layout
+            gridTemplateColumns: 'repeat(6, 1fr)', // Six equal columns for headers
+            gap: '10px', // Space between grid items
+            width: '100%', // Full width for grid
+            marginBottom: '10px', // Space below headers
+          }}>
+            {/* Column Headers */}
+            <div style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>GPUZ4</div>
+            <div style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>Mark</div>
+            <div style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>Oracle</div>
+            <div style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>24h Change</div>
+            <div style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>24h Volume</div>
+            <div style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>Open Interest</div>
+          </div>
+          <div style={{
+            display: 'grid', // Using grid for structured layout
+            gridTemplateColumns: 'repeat(6, 1fr)', // Six equal columns for values
+            gap: '10px', // Space between grid items
+            width: '100%', // Full width for grid
+          }}>
+            {/* Corresponding Values */}
+            <div style={{ color: '#fff', textAlign: 'center' }}> </div>
+            <div style={{ color: '#fff', textAlign: 'center' }}>25.00</div>
+            <div style={{ color: '#fff', textAlign: 'center' }}>-1.1 / -0.05%</div>
+            <div style={{ color: '#fff', textAlign: 'center' }}>$71,854,880.67</div>
+            <div style={{ color: '#fff', textAlign: 'center' }}>$219,985,215.56</div>
+            <div style={{ color: '#fff', textAlign: 'center' }}>0.0013%</div>
+          </div>
+        </div>
+        <div style={{
+          height: '10px',}}></div>
           <ChartComponent />
 
           
       
         </WalletModalProvider>
       </WalletProvider>
-      <InfoBox />
+      {/* <InfoBox /> */}
     </ConnectionProvider>
   );
 }
  
 export default App;
+

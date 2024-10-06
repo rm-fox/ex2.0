@@ -113,7 +113,7 @@ export default function BuyLongButton({ addAreaDataLong }: { addAreaDataLong: ()
 
   return (
     <button className="w-24" onClick={onClick} disabled={!publicKey}>
-      {isLoading ? "Loading" : "Buy GPUZ4"}
+      {isLoading ? "Loading" : "Buy / Long"}
     </button>
   );
 }
